@@ -9,8 +9,6 @@ on:
 jobs:
   a11y:
     runs-on: ubuntu-latest
-    # Warn-only for now: problems show in the log but don't fail the check
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
 
