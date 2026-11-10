@@ -1,7 +1,9 @@
 name: Autograding Tests
 'on':
-- push
-- repository_dispatch
+  push:
+    branches:
+    - main
+  repository_dispatch:
 permissions:
   checks: write
   actions: read
@@ -16,9 +18,9 @@ jobs:
       id: w3c-html-validation
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: W3C HTML Validation
-        setup-command: npm install html-w3c-validator
-        command: npx html-w3c-validator
+        test-name: W3C HTML Validation (all pages)
+        setup-command: npm install --prefix /tmp vnu-jar
+        command: java -jar /tmp/node_modules/vnu-jar/build/dist/vnu.jar --skip-non-html .
         timeout: 10
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
